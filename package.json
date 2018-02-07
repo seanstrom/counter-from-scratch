@@ -1,0 +1,11 @@
+{
+  "name": "counter-from-scratch",
+  "version": "1.0.0",
+  "description": "simple counter from scratch",
+  "main": "index.js",
+  "author": "seanstrom",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel-bundler": "^1.5.1"
+  }
+}
