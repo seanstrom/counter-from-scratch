@@ -4,5 +4,5 @@ import './index.scss'
 
 main({
   window,
-  node: document.body
+  mountNode: document.body
 })

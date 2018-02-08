@@ -1,64 +1,33 @@
-import { init, model, update, view } from './counter'
+import * as Counter from './counter'
+import { program } from './program'
 
 
-// Render -- handles HMR replacement
+// render -- handles patching the DOM
 
-const render = (document) => (node) => (elements) => {
-  const initialRender = !node.hasChildNodes()
-  const element = elements(document)
+const render = (document) => (mountNode) => (elements) => {
+  const initialRender = !mountNode.hasChildNodes()
+  const nodes = elements(document)
 
-  if (initialRender) {
-    node.appendChild(element)
-  } else {
-    node.replaceChild(element, node.firstChild)
-  }
+  initialRender
+    ? mountNode.appendChild(nodes)
+    : mountNode.replaceChild(nodes, mountNode.firstChild)
 
-  return node
+  return nodes
 }
 
 
-// Configure -- handles binding dispatch to state
+// main -- handles creating and running the program
 
-const configure = (state) => (fn) => {
-  const dispatch = (msg) => {
-    if (typeof msg === 'function') {
-      return msg(dispatch)
-    }
+const main = ({ mountNode, window: { document } }) => {
+  const renderToDom = render(document)(mountNode)
 
-    return fn(msg)(state)
-  }
-
-  return { dispatch, state }
-}
-
-
-// IO --
-
-const io = (config) => (msg) => (model) => {
-  const { render, update } = config
-  const patch = update(msg)(model)
-  const { dispatch, state } = configure(patch.model)(io(config))
-  const element = view(dispatch)(state)
-  render(element)
-}
-
-
-// Main
-
-const main = ({ window, node }) => {
-  const document = window.document
-  const xrender = render(document)(node)
-  const initial = init(model)
-
-  const IO = io({ update, render: xrender })
-  const { state, dispatch } = configure(initial.model)(IO)
-  const element = view(dispatch)(state)
-
-  if (initial.command) {
-    dispatch(initial.command)
-  }
-
-  xrender(element)
+  program({
+    init: Counter.init,
+    model: Counter.model,
+    view: Counter.view,
+    update: Counter.update,
+    render: renderToDom
+  })
 }
 
 
