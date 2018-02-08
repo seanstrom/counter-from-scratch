@@ -45,7 +45,7 @@ const io = (config) => (msg) => (model) => {
 
 // Main
 
-export const main = ({ window, node }) => {
+const main = ({ window, node }) => {
   const document = window.document
   const xrender = render(document)(node)
   const initial = init(model)
@@ -60,3 +60,6 @@ export const main = ({ window, node }) => {
 
   xrender(element)
 }
+
+
+export { main }
