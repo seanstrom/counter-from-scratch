@@ -23,7 +23,6 @@ const formatArgs = (attributes, children) => {
   }
 }
 
-
 const h = (tag, ...args) => {
   const { attributes, children } = formatArgs(...args)
 
@@ -38,6 +37,7 @@ const h = (tag, ...args) => {
       }
 
       element.setAttribute(key, value)
+
       return element
     })
 
@@ -54,5 +54,6 @@ const text = (string) => {
     return document.createTextNode(string)
   }
 }
+
 
 export { h, text }
