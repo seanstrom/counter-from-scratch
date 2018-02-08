@@ -19,7 +19,7 @@ const model = 0
 const init = (model) => {
   return {
     model,
-    command: {}
+    command: null
   }
 }
 
@@ -28,14 +28,14 @@ const init = (model) => {
 
 const update = (msg) => (model) => {
   if (msg === Msg.Increment) {
-    return { model: model + 1, command: {} }
+    return { model: model + 1, command: null }
   }
 
   if (msg === Msg.Decrement) {
-    return { model: model - 1, command: {} }
+    return { model: model - 1, command: null }
   }
 
-  return { model, command: {} }
+  return { model, command: null }
 }
 
 
