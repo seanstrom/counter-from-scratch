@@ -51,12 +51,28 @@ const view = (dispatch) => (model) => {
   }
 
   return (
-    h('main', { class: 'main' },
-      [ h('h1', { id: 'title' }, [ text('Counter Example') ])
-      , h('button', { onclick: increment }, [ text('+') ])
-      , h('h2', [ text(model) ])
-      , h('button', { onclick: decrement }, [ text('-') ])
-      ])
+    h('main'
+    , { class: 'main' }
+    , [ h('h1'
+        , { id: 'title' }
+        , [ text('Counter Example') ]
+        )
+
+      , h('button'
+        , { onclick: increment }
+        , [ text('+') ]
+        )
+
+      , h('h2'
+        , [ text(model) ]
+        )
+
+      , h('button'
+        , { onclick: decrement }
+        , [ text('-') ]
+        )
+      ]
+    )
   )
 }
 
