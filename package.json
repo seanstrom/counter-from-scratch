@@ -2,11 +2,11 @@
   "name": "counter-from-scratch",
   "version": "1.0.0",
   "description": "simple counter from scratch",
-  "main": "index.js",
   "author": "seanstrom",
   "license": "MIT",
   "devDependencies": {
-    "parcel-bundler": "^1.5.1"
+    "@parcel/transformer-sass": "^2.0.1",
+    "parcel": "^2.0.1"
   },
   "scripts": {
     "start": "parcel serve ./src/index.html"
